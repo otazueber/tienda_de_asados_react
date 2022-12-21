@@ -1,0 +1,15 @@
+@media screen and (min-width: 769px) {
+    @keyframes resaltar {
+        from {
+            color: black;
+        }
+
+        to {
+            color: white;
+        }
+    }
+
+    .slogan {
+        animation: resaltar 2s infinite;
+    }
+}
