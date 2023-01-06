@@ -1,5 +1,5 @@
 import React from "react";
-import CartWidget from "../CarWidget";
+import CartWidget from "../CartWidget";
 import './styles.css';
 
 
