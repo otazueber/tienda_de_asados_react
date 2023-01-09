@@ -1,15 +1,7 @@
-@media screen and (min-width: 769px) {
-    @keyframes resaltar {
-        from {
-            color: black;
-        }
+.row {
+    margin-left: 1%;
+}
 
-        to {
-            color: white;
-        }
-    }
-
-    .slogan {
-        animation: resaltar 2s infinite;
-    }
+.row-producto {
+    margin-left: 4%;
 }

@@ -1,0 +1,36 @@
+@media screen and (min-width: 769px) {
+    .producto {
+        width: 50%;
+        margin-bottom: 5%;
+    }
+
+    .producto:hover {
+        width: 55%;
+        margin-bottom: 0%;
+        transition: width 0s;
+    }
+}
+
+.producto {
+    display: "flex";
+    width: 50%;
+}
+
+.btnAgregarProducto {
+    background-color: #731386;
+    color: white;
+}
+
+.centrarElementos {
+    text-align: center;
+}
+
+.font {
+    font-family: "Assistant";
+}
+
+div {
+    color: white;
+    background-color: black;
+    font-size: 20px;
+}

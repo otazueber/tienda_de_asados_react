@@ -1,0 +1,21 @@
+@keyframes resaltar {
+    from {
+        color: black;
+    }
+
+    to {
+        color: white;
+    }
+}
+
+.slogan {
+    animation: resaltar 2s infinite;
+}
+
+.font {
+    color: white;
+}
+
+.imgFondo img {
+    display: "flex";
+    width: 100%; }

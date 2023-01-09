@@ -1,30 +1,16 @@
-div {
-    color: white;
-    background-color: black;
-    font-size: 20px;
-}
-
 .bground {
     background-color: black;
-}
-
-.font {
-    color: white;
-    font-family: "Assistant";
 }
 
 a {
     padding-right: 10px;
 }
 
-/* SOLO PARA DESKTOP */
-@media screen and (min-width: 769px) {
-    .logo {
-        transition: all 1s;
-    }
+.logo {
+    transition: all 1s;
+}
 
-    .logo:hover {
-        transform: rotate(360deg);
-        transition: rotate(360deg) 1s;
-    }
+.logo:hover {
+    transform: rotate(360deg);
+    transition: rotate(360deg) 1s;
 }
