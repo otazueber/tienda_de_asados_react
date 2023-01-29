@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ItemCount = ({ onAdd, stock, initial }) => {
+const ItemCount = ({ unidadDeMedida, onAdd, stock, initial }) => {
     const [count, setCount] = useState(initial);
 
     const onPlus = () => {
@@ -12,12 +12,20 @@ const ItemCount = ({ onAdd, stock, initial }) => {
     };
 
     return (
-        <div className="d-flex flex-row justify-content-center">
-            <button className="btnAgregarProducto" onClick={onDecrement}><img className="btn-administrar" src="../assets/img/btnResta.png" alt="Icon"/></button>
-            <div style={{width: "50px"}}><span>{count}</span></div>            
-            <button className="btnAgregarProducto" onClick={onPlus}><img className="btn-administrar" src="../assets/img/btnSuma.png" alt="Icon"/></button>
-            <button className="btnAgregarProducto" onClick={() => onAdd(count)}><img src="../assets/img/agregar.png" alt="imagen" />Agregar al carrito</button>
-        </div>
+        <>
+            <div className="d-flex flex-row justify-content-center">
+                <button className="btnAgregarProducto" onClick={onDecrement}><img className="btn-administrar" src="../assets/img/btnResta.png" alt="Icon" /></button>
+                <div style={{ width: "50px" }}><span>{count}</span></div>
+                <button className="btnAgregarProducto" onClick={onPlus}><img className="btn-administrar" src="../assets/img/btnSuma.png" alt="Icon" /></button>
+                <button className="btnAgregarProducto" onClick={() => onAdd(count)}><img src="../assets/img/agregar.png" alt="imagen" />Agregar al carrito</button>
+
+            </div>
+            <div className="p-3">
+            <p>Cantidad dipsonible {stock} {unidadDeMedida}</p>
+            </div>
+            
+        </>
+
     );
 };
 

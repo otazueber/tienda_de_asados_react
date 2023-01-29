@@ -31,7 +31,7 @@ const ShopProvider = ({ children }) => {
     const total = () => {
         let total = 0;
         for (const product of products) {
-            total += product.price * product.quantity
+            total += product.precio * product.quantity
         }
         return total;
     }
@@ -41,7 +41,7 @@ const ShopProvider = ({ children }) => {
     }
 
     const removeProduct = (id) => {
-        const productsFiltered = products.filter(product => product.id !== id);
+        const productsFiltered = products.filter(product => product.idProducto !== id);
         setProducts(productsFiltered)
     }
 

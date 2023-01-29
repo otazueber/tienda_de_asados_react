@@ -18,12 +18,13 @@ const ItemDetail = ({ detail }) => {
     return (
         <div className="row">
             <div className="col-12 col-lg-12 centrarElementos">
-                <img className="ps-5 foto" src={imagen} alt="Fhoto" />
+                <img style={{width: "25%"}} className="ps-5 foto" src={imagen} alt="Fhoto" />
                 <p>{descripcion} <br />Precio por {unidadMedida}: {precioFormateado}</p>
                 <div className="centrarElementos">
                     {
                         quantity === 0 ?
                             <ItemCount
+                                unidadDeMedida={unidadMedida}
                                 stock={stock}
                                 initial={1}
                                 onAdd={onAdd}
