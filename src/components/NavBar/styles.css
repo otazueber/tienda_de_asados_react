@@ -14,3 +14,12 @@ a {
     transform: rotate(360deg);
     transition: rotate(360deg) 1s;
 }
+
+.textLink{
+    color: white;
+    text-decoration: none;
+}
+
+.textLink:hover{
+    color: blue;
+}

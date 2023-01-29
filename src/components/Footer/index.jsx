@@ -6,7 +6,7 @@ export default function Footer() {
         <div className="container-fluid font bground pt-5">
             <div className="row">
                 <div className="col-12 col-lg-4 d-flex justify-content-center">
-                    <a href="https://api.whatsapp.com/send/?phone=5491153756844&text=Hola+Not+Vegan%21&type=phone_number&app_absent=0/" target="_blank" rel="noreferrer">
+                    <a className = "textLink" href="https://api.whatsapp.com/send/?phone=5491153756844&text=Hola+Not+Vegan%21&type=phone_number&app_absent=0/" target="_blank" rel="noreferrer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
                             className="bi bi-whatsapp" viewBox="0 0 32 32">
                             <path
@@ -15,7 +15,7 @@ export default function Footer() {
                     </a>
                 </div>
                 <div className="col-12 col-lg-4 d-flex justify-content-center">
-                    <a href="https://m.facebook.com/Not-Vegan-100454198906374/" target="_blank" rel="noreferrer">
+                    <a className = "textLink" href="https://m.facebook.com/Not-Vegan-100454198906374/" target="_blank" rel="noreferrer">
                         <svg
                             xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
                             className="bi bi-facebook" viewBox="0 0 32 32">
@@ -25,7 +25,7 @@ export default function Footer() {
                     </a>
                 </div>
                 <div className="col-12 col-lg-4 d-flex justify-content-center">
-                    <a href="https://www.instagram.com/notvegan.com.ar/" target="_blank" rel="noreferrer">
+                    <a className = "textLink" href="https://www.instagram.com/notvegan.com.ar/" target="_blank" rel="noreferrer">
                         <svg
                             xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
                             className="bi bi-instagram" viewBox="0 0 32 32">

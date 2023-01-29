@@ -3,3 +3,12 @@
     padding: 3px;
     background-color: blueviolet;
 }
+
+.textLink{
+    color: white;
+    text-decoration: none;
+}
+
+.textLink:hover{
+    color: blue;
+}

@@ -1,33 +1,56 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import ItemDetail from '../../components/ItemDetail';
-import productosImportados from '../../data/json/products.json';
+import { dataBase } from '../../firebase/config';
+import { doc, getDoc } from "firebase/firestore";
+import SpinnerLoader from '../../components/SpinnerLoader';
+
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState({})
+    const [error, setError] = useState("")
     const { idProducto } = useParams()
-    const promesa = new Promise((acc, rec) => {
-        setTimeout(() => {
-            acc(productosImportados);
-        }, 2000);
-    });
 
     useEffect(() => {
-        promesa
-            .then(productos => {
-                if (idProducto) {
-                    setProduct(productos[parseInt(idProducto) - 1])
+        try {
+            const getProduct = async () => {
+                const docRef = doc(dataBase, "products", idProducto);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const productDetail = {
+                        id: docSnap.id,
+                        ...docSnap.data()
+                    }
+                    setProduct(productDetail);
+                } else {
+                    setError("Producto no encontrado")
                 }
-            })
-            .catch(() => {
-                alert("No se pudo obtener la lista de productos")
-            });
-    })
+            }
+            getProduct();
+        } catch (error) {
+            setError(error.message)
+        }
+
+    }, [idProducto])
+
+    function view() {
+        if (Object.keys(product).length === 0) {
+            if (error) {
+                return <div style={{ display: "flex", justifyContent: "center" }}><h3>{error}</h3></div> 
+            } else {
+                return <SpinnerLoader />
+            }
+
+        } else {
+            return <ItemDetail detail={product} />
+        }
+    }
 
     return (
         <div>
             {
-                Object.keys(product).length === 0 ? <h2>Loading ...</h2> : <ItemDetail detail={product} />
+                view()
             }
         </div>
     )
