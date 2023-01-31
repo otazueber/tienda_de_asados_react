@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { createContext } from "react";
 
 export const Shop = createContext()
@@ -6,12 +6,11 @@ export const Shop = createContext()
 const ShopProvider = ({ children }) => {
 
     const [products, setProducts] = useState([])
-    const elProductoYaExiste = (id) => {
-        return products.some(product => product.id === id)
-    }
+    const elProductoYaExiste = (idProducto) => { products.some(product => product.idProducto === idProducto) }
+
     const addProduct = (product) => {
-        if (elProductoYaExiste(product.id)) {
-            const productoRepetido = products.find(element => element.id === product.id)
+        if (elProductoYaExiste(product.idProducto)) {
+            const productoRepetido = products.find(element => element.idProducto === product.idProducto)
             productoRepetido.quantity += product.quantity
             setProducts([...products])
         } else {
@@ -40,10 +39,32 @@ const ShopProvider = ({ children }) => {
         setProducts([])
     }
 
-    const removeProduct = (id) => {
-        const productsFiltered = products.filter(product => product.idProducto !== id);
+    const removeProduct = (idProducto) => {
+        const productsFiltered = products.filter(product => product.idProducto !== idProducto);
         setProducts(productsFiltered)
     }
+
+    function leerCarritoDeLocalStorage() {
+        let jsonCarrito = localStorage.getItem("carrito");
+        if (jsonCarrito != null) {
+            const carrito = JSON.parse(jsonCarrito);
+            return carrito
+        } else {
+            return []
+        }
+    }
+
+    function grabarCarritoEnLocalStorage(cart) {
+        localStorage.setItem("carrito", JSON.stringify(cart));
+    }
+
+    useEffect(() => {
+        setProducts(leerCarritoDeLocalStorage())
+    }, [])
+
+    useEffect(() => {
+        grabarCarritoEnLocalStorage(products)
+    }, [products]);
 
     return (
         <Shop.Provider value={{ products, addProduct, countCart, total, cleanCart, removeProduct }}>
