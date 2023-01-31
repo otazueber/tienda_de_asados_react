@@ -9,14 +9,12 @@ import CartItem from '../../components/CartItem';
 
 const Cart = () => {
 
-    const {countCart, products, total, cleanCart } = useContext(Shop);
+    const { countCart, products, total, cleanCart } = useContext(Shop);
     let textoAMostrar = "Mi carrito"
-    if (countCart() === 1)
-    {
+    if (countCart() === 1) {
         textoAMostrar += " (1 producto)"
-    } else 
-    {
-        textoAMostrar += " ("+ countCart() +" productos)"
+    } else {
+        textoAMostrar += " (" + countCart() + " productos)"
     }
 
     const precioFormateado = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'ARS' }).format(parseFloat(total()))
@@ -43,7 +41,7 @@ const Cart = () => {
             cleanCart()
             //Posteriormente actualizar el stock de los productos existentes.
             for (const productCart of products) {
-                const productRef = doc(dataBase, "products", productCart.id);
+                const productRef = doc(dataBase, "products", productCart.idProducto);
 
                 // Set the "capital" field of the city 'DC'
                 await updateDoc(productRef, {
@@ -78,12 +76,6 @@ const Cart = () => {
                                 return <CartItem product={producto} key={producto.idProducto} />
                             })}
                         </div>
-                        {/* {
-                            loader ?
-                                <h2>Cargando ... </h2>
-                                :
-                                <button onClick={confirmPurchase}>Confirm purchase</button>
-                        } */}
                     </>
                     :
                     <>
