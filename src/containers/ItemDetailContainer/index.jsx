@@ -19,7 +19,7 @@ const ItemDetailContainer = () => {
 
                 if (docSnap.exists()) {
                     const productDetail = {
-                        id: docSnap.id,
+                        idProducto: docSnap.id,
                         ...docSnap.data()
                     }
                     setProduct(productDetail);
