@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 
-export function Register() {
+export default function Register() {
 
     const { registerUser } = useContext(Auth);
     const navigate = useNavigate()

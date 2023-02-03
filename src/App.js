@@ -5,9 +5,9 @@ import ItemListContainer from './containers/ItemListContainer';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import ItemDetailContainer from './containers/ItemDetailContainer';
 import Cart from './containers/CartContainer';
-import { Register } from './components/Register';
-import { Login } from './components/Login';
-import { ResetPassword } from './components/ResetPassword';
+import Register from './components/Register';
+import Login from './components/Login';
+import ResetPassword from './components/ResetPassword';
 
 function App() {
   return (

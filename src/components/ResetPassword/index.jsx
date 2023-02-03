@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 
-export function ResetPassword() {
+export default function ResetPassword() {
     const { resetPassword } = useContext(Auth);
     const [email, setEmail] = useState("")
     const navigate = useNavigate()

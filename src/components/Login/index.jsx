@@ -5,7 +5,6 @@ import './styles.css';
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
-
 export default function Login() {
     const { login } = useContext(Auth);
     const navigate = useNavigate()
