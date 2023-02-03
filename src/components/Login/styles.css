@@ -1,0 +1,17 @@
+.login-user-data {
+    width: 350px;
+}
+
+.boton-iniciar {
+    width: 350px;
+    height: 40px;
+    font-size: 20px;
+    color: white;
+    background-color: red;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+.textLink{
+    text-decoration: none;
+    color: white;
+}
