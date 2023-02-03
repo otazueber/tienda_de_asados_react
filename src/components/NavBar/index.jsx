@@ -4,6 +4,7 @@ import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CartWidget from "../CartWidget";
 import "bootstrap/dist/css/bootstrap.min.css";
+import User from "../User";
 
 export default function NavBar() {
     return (
@@ -14,7 +15,9 @@ export default function NavBar() {
                 </div>
             </div>
             <div className="row">
-                <div className="col-12 col-lg-2 display-flex" style={{ width: "24%" }}></div>
+                <div className="col-12 col-lg-2 d-flex justify-content-center" style={{ width: "24%" }}>
+                    <User/>
+                </div>
                 <div className="col-6 col-lg-8 d-flex justify-content-center" style={{ width: "50%" }}>
                     <Navbar className="d-flex justify-content-center" collapseOnSelect expand="lg" bg="black" variant="dark">
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" style={{ borderColor: "white" }} />
@@ -36,11 +39,10 @@ export default function NavBar() {
                                     <Link to="/category/fuego" className="textLink">Fuego</Link>
                                 </Nav>
                             </div>
-
                         </Navbar.Collapse>
                     </Navbar>
                 </div>
-                <div className="col-6 col-lg-2 display-flex" style={{ width: "26%" }}>
+                <div className="col-6 col-lg-2 d-flex justify-content-center" style={{ width: "26%" }}>
                     <CartWidget />
                 </div>
             </div>

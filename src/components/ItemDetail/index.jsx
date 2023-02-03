@@ -18,7 +18,8 @@ const ItemDetail = ({ detail }) => {
     return (
         <div className="row">
             <div className="col-12 col-lg-12 centrarElementos">
-                <img style={{width: "25%"}} className="ps-5 foto" src={imagen} alt="Fhoto" />
+                <br /><br />
+                <img  className="ps-5 foto" src={imagen} alt="Fhoto" />
                 <p>{descripcion} <br />Precio por {unidadMedida}: {precioFormateado}</p>
                 <div className="centrarElementos">
                     {
