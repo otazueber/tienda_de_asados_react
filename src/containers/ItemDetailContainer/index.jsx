@@ -37,7 +37,9 @@ const ItemDetailContainer = () => {
     function view() {
         if (Object.keys(product).length === 0) {
             if (error) {
-                return <div style={{ display: "flex", justifyContent: "center" }}><h3>{error}</h3></div> 
+                return <div style={{ display: "flex", justifyContent: "center", paddingTop: "10%", paddingBottom: "16%" }}>
+                    <h3>{error}</h3>
+                    </div>
             } else {
                 return <SpinnerLoader />
             }
