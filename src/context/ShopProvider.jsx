@@ -6,7 +6,7 @@ export const Shop = createContext()
 const ShopProvider = ({ children }) => {
 
     const [products, setProducts] = useState([])
-    const elProductoYaExiste = (idProducto) => { products.some(product => product.idProducto === idProducto) }
+    const elProductoYaExiste = (idProducto) => products.some(product => product.idProducto === idProducto)
 
     const addProduct = (product) => {
         if (elProductoYaExiste(product.idProducto)) {
