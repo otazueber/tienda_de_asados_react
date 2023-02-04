@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useContext } from 'react'
 import { Auth } from "../../context/AuthenticationProvider"
 import './styles.css';
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 export default function Register() {
 
-    const { registerUser } = useContext(Auth);
+    const { registerUser, logedUser, sendVerificationMail, logOut } = useContext(Auth);
     const navigate = useNavigate()
 
     const [error, setError] = useState("")
@@ -17,6 +17,7 @@ export default function Register() {
         password: "",
         password2: ""
     })
+    const [newUser, setNewUser] = useState(false)
     const handleChange = ({ target: { name, value } }) => {
         setUser({ ...user, [name]: value })
     }
@@ -37,8 +38,7 @@ export default function Register() {
         if ((user.password === user.password2) && (user.password.trim().length > 5)) {
             try {
                 await registerUser(user.email, user.password)
-                navigate("/")
-                
+                setNewUser(true)              
             } catch (error) {
                 setError(getErrorMessage(error.code, error.message))
             }
@@ -49,8 +49,24 @@ export default function Register() {
                 setError("Contraseña inválida (menor a 6 caracteres)")
             }
         }
-
     }
+
+
+    useEffect(() => {
+        if ((logedUser) && (!logedUser.emailVerified) && (newUser)){
+            setNewUser(false)
+            sendVerificationMail()
+            logOut()
+            navigate("/login")
+        }
+    }, [logedUser, navigate, sendVerificationMail, newUser, logOut])
+
+    useEffect(() => {
+        if ((logedUser) && (!newUser)){
+            navigate("/")
+        }
+    }, [logedUser, navigate, newUser])  
+    
     return (
         <>
             <div className="row">

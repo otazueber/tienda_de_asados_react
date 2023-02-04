@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useContext } from 'react'
 import { Auth } from "../../context/AuthenticationProvider"
 import './styles.css';
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 export default function Login() {
-    const { login } = useContext(Auth);
+    const { login, logedUser, logOut } = useContext(Auth);
     const navigate = useNavigate()
 
     const [error, setError] = useState("")
@@ -28,16 +28,27 @@ export default function Login() {
         }
 
     }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError("")
         try {
             await login(user.email, user.password)
-            navigate("/")
         } catch (error) {
             setError(getErrorMessage(error.code, error.message))
         }
     }
+
+    useEffect(() => {
+        if (logedUser){
+            if (!logedUser.emailVerified){
+                logOut()
+                setError("Su email no está verificado")
+            } else {
+                navigate("/")
+            }
+        }
+    }, [logedUser, navigate, logOut])
 
     return (
         <>
