@@ -20,30 +20,18 @@ const Cart = () => {
     }
 
     const precioFormateado = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'ARS' }).format(parseFloat(total()))
-
-    // // const [loader, setLoader] = useState(false);
     const confirmPurchase = async () => {
 
         try {
-
             const order = generateOrderObject({
-                nombre: "Sebas",
-                email: "sebastian@gmail.com",
-                telefono: "123123123",
+                email: logedUser.email,
                 cart: products,
                 total: total()
             })
-
-
-
-            // Add a new document with a generated id.
             const docRef = await addDoc(collection(dataBase, "orders"), order);
             cleanCart()
-            //Posteriormente actualizar el stock de los productos existentes.
             for (const productCart of products) {
                 const productRef = doc(dataBase, "products", productCart.idProducto);
-
-                // Set the "capital" field of the city 'DC'
                 await updateDoc(productRef, {
                     stock: productCart.stock - productCart.quantity
                 });
@@ -68,12 +56,12 @@ const Cart = () => {
                             </div>
                             <div className="col-12 col-lg-4 pt-5 centrarElementos">
                                 {
-                                    logedUser?
-                                    <button onClick={confirmPurchase} className="btnAgregarProducto">Finalizar compra {precioFormateado}</button>
-                                    :
-                                    <Link to="/login" className="textLink">
-                                        <button className="btnAgregarProducto">Inicia seción para finalizar tu pedido</button>
-                                    </Link>
+                                    logedUser ?
+                                        <button onClick={confirmPurchase} className="btnAgregarProducto">Finalizar compra {precioFormateado}</button>
+                                        :
+                                        <Link to="/login" className="textLink">
+                                            <button className="btnAgregarProducto">Inicia seción para finalizar tu pedido</button>
+                                        </Link>
                                 }
                             </div>
                         </div>
