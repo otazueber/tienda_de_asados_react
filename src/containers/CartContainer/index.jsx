@@ -45,6 +45,9 @@ const Cart = () => {
         } finally {
         }
     }
+    function handleOnClick(){
+        guardarOrderID("")
+    }
     function viewCart(){
         if (orderID) {
             return null
@@ -99,7 +102,7 @@ const Cart = () => {
                         </div>
                         <div className="centrarElementos">
                             <Link to="/" className="textLink">
-                                <button className="btnAgregarProducto">Seguir navegando</button>
+                                <button onClick={handleOnClick} className="btnAgregarProducto">Seguir navegando</button>
                             </Link>
                             <br /><br /><br /><br /><br /><br /><br /><br />
                         </div>
