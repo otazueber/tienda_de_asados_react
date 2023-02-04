@@ -14,7 +14,6 @@ export default function Register() {
     const [error, setError] = useState("")
     const [user, setUser] = useState({
         email: "",
-        email2: "",
         password: "",
         password2: ""
     })
@@ -35,7 +34,7 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError("")
-        if ((user.email === user.email2) && (user.password === user.password2) && (user.password.trim().length > 5)) {
+        if ((user.password === user.password2) && (user.password.trim().length > 5)) {
             try {
                 await registerUser(user.email, user.password)
                 navigate("/")

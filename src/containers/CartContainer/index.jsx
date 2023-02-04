@@ -10,7 +10,7 @@ import { Auth } from "../../context/AuthenticationProvider";
 
 
 const Cart = () => {
-    const { user } = useContext(Auth)
+    const { logedUser } = useContext(Auth)
     const { countCart, products, total, cleanCart } = useContext(Shop);
     let textoAMostrar = "Mi carrito"
     if (countCart() === 1) {
@@ -68,7 +68,7 @@ const Cart = () => {
                             </div>
                             <div className="col-12 col-lg-4 pt-5 centrarElementos">
                                 {
-                                    user?
+                                    logedUser?
                                     <button onClick={confirmPurchase} className="btnAgregarProducto">Finalizar compra {precioFormateado}</button>
                                     :
                                     <Link to="/login" className="textLink">

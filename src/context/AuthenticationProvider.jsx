@@ -11,7 +11,7 @@ export const useAuth = () => {
 }
 
 export function AuthProvider({ children }) {
-    const [user, setUSer] = useState(null);
+    const [logedUser, setUSer] = useState(null);
 
     const registerUser = (email, password) => createUserWithEmailAndPassword(auth, email, password)
     const login = (email, password) => signInWithEmailAndPassword(auth, email, password)
@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
     }, [])
 
     return (
-        <Auth.Provider value={{ registerUser, login, user, logOut, resetPassword }}>
+        <Auth.Provider value={{ registerUser, login, logedUser, logOut, resetPassword }}>
             {children}
         </Auth.Provider>
     )
