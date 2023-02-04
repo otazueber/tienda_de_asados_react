@@ -1,14 +1,16 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
-// import { Link } from "react-router-dom";
 import { Auth } from "../../context/AuthenticationProvider";
+import { Shop } from "../../context/ShopProvider";
 import './styles.css';
 
 const User = () => {
     const { logedUser, logOut } = useContext(Auth)
+    const {guardarOrderID} = useContext(Shop)
     const handleOnClicUser = async () => {
         if (logedUser) {
             await logOut()
+            guardarOrderID("")
         }
 
     }

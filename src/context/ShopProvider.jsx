@@ -6,6 +6,7 @@ export const Shop = createContext()
 const ShopProvider = ({ children }) => {
 
     const [products, setProducts] = useState([])
+    const [orderID, setOrderID] = useState("")
     const elProductoYaExiste = (idProducto) => products.some(product => product.idProducto === idProducto)
 
     const addProduct = (product) => {
@@ -16,6 +17,7 @@ const ShopProvider = ({ children }) => {
         } else {
             setProducts([...products, product])
         }
+        setOrderID("")
     }
 
     const countCart = () => {
@@ -57,6 +59,9 @@ const ShopProvider = ({ children }) => {
     function grabarCarritoEnLocalStorage(cart) {
         localStorage.setItem("carrito", JSON.stringify(cart));
     }
+    function guardarOrderID(id){
+        setOrderID(id)
+    }
 
     useEffect(() => {
         setProducts(leerCarritoDeLocalStorage())
@@ -67,7 +72,7 @@ const ShopProvider = ({ children }) => {
     }, [products]);
 
     return (
-        <Shop.Provider value={{ products, addProduct, countCart, total, cleanCart, removeProduct }}>
+        <Shop.Provider value={{ products, addProduct, countCart, total, cleanCart, removeProduct, guardarOrderID, orderID }}>
             {children}
         </Shop.Provider>
     )

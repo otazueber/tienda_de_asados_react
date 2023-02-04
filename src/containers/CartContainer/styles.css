@@ -3,3 +3,18 @@
     background-color: #731386;
     color: white;
 }
+
+
+@keyframes resaltar {
+    from {
+        color: blueviolet;
+    }
+
+    to {
+        color: white;
+    }
+}
+
+.orderID {
+    animation: resaltar 1s infinite;
+}

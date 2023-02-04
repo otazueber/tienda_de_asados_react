@@ -7,11 +7,12 @@ import { doc, updateDoc } from "firebase/firestore";
 import { Link } from 'react-router-dom';
 import CartItem from '../../components/CartItem';
 import { Auth } from "../../context/AuthenticationProvider";
+import './styles.css';
 
 
 const Cart = () => {
     const { logedUser } = useContext(Auth)
-    const { countCart, products, total, cleanCart } = useContext(Shop);
+    const { countCart, products, total, cleanCart, guardarOrderID, orderID } = useContext(Shop);
     let textoAMostrar = "Mi carrito"
     if (countCart() === 1) {
         textoAMostrar += " (1 producto)"
@@ -29,20 +30,35 @@ const Cart = () => {
                 total: total()
             })
             const docRef = await addDoc(collection(dataBase, "orders"), order);
-            cleanCart()
+
             for (const productCart of products) {
                 const productRef = doc(dataBase, "products", productCart.idProducto);
                 await updateDoc(productRef, {
                     stock: productCart.stock - productCart.quantity
                 });
             }
-
-            alert("Orden confirmada con ID: " + docRef.id);
+            guardarOrderID(docRef.id)
+            cleanCart()
 
         } catch (error) {
             console.log(error);
         } finally {
         }
+    }
+    function viewCart(){
+        if (orderID) {
+            return null
+        }
+        return (
+            <>
+                <div className="centrarElementos">
+                    <img src="../assets/img/carrito.png" alt="Carrito" />
+                </div>
+                <div className="centrarElementos">
+                    <h1 className="py-5">Tu carrito está vacío</h1>
+                </div>
+            </>
+        )
     }
 
     return (
@@ -73,14 +89,13 @@ const Cart = () => {
                     </>
                     :
                     <>
+                        {viewCart()}
                         <div className="centrarElementos">
-                            <img src="../assets/img/carrito.png" alt="Carrito" />
-                        </div>
-                        <div className="centrarElementos">
-                            <h1 className="py-5">Tu carrito está vacío</h1>
-                        </div>
-                        <div className="centrarElementos">
-                            <p>No tienes productos en tu carrito de compras.</p>
+                            {
+                                orderID ? <p><br /><br />Muchas gracias por su pedido. <br /> Tome nota de su número de orden: <span className="orderID">{orderID}</span><br /><br /><br /><br /><br /><br /></p>
+                                    :
+                                    <p>No tienes productos en tu carrito de compras.</p>
+                            }
                         </div>
                         <div className="centrarElementos">
                             <Link to="/" className="textLink">
